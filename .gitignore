@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/RoomManagement/RoomManagement/bin/Debug/net6.0
+/RoomManagement/RoomManagement/obj
+/RoomManagement/.vs/RoomManagement/FileContentIndex
