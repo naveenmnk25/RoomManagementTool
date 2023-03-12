@@ -1,0 +1,103 @@
+﻿@using RoomManagement.ViewModels;
+@{
+    ViewData["Title"] = "Expance";
+}
+
+
+@model FoodDetailsViewModel
+<style>
+    .green{
+        color:green;
+    }
+    .red{
+        color:red;
+    }
+</style>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="row">
+            <div class="col-8">
+                <h1>Room Management Expance</h1>
+            </div>
+            <div class="col-4">
+               @* <a onclick="ajaxcall()" class="btn btn-sm btn-success">
+                    <i class="fa-solid fa-plus"></i> New
+                </a>*@
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        AmountToGive
+                    </th>
+                    <th>
+                        AmountRecived
+                    </th>
+                    <th>
+                        Remaining Togive
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (FootData member in @Model.FootData)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => member.Name)
+                            <input type="hidden" value="@member.Memberid" id="getmemberId" />
+                            <input type="hidden" value="@member.FoodDetailsid" id="getitemId" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => @member.AmountToGive)
+                        </td>
+                        <td class="green">
+                            @Html.DisplayFor(modelItem => @member.AmountRecived)
+                        </td>
+                        <td class="red">
+                            @Html.DisplayFor(modelItem => @member.RemainingTogive )
+                        </td>
+                        <td>
+                            <form asp-action="DeleteExpance" asp-route-id="@member.FoodDetailsid">
+                                <div class="btn-group btn-group-md">
+                                    <a asp-action="AddOrEditFoodDetails" asp-route-id="@member.FoodDetailsid" asp-route-mid="@member.Memberid" asp-route-amountToGive="@member.AmountToGive" asp-route-name="@member.Name" class="btn btn-warning">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                   @* <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Are you sure to delete this record?')">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>*@
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    function ajaxcall() {
+        var url = "/Home/AddOrEditFoodDetail";
+        var id = $("#getitemId").val();
+        var memberid = $("#getmemberId").val();
+            alert(memberid);
+            var data = { "Id": id, "Memberid": memberid };
+            $.ajax({
+                url: '/Home/AddOrEditFoodDetail',
+                type: 'POST',
+                data: data,
+                contentType: 'application/json',
+                
+            });
+    }
+
+</script>

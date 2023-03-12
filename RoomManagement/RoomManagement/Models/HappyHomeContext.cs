@@ -15,12 +15,30 @@ public partial class HappyHomeContext : DbContext
     {
     }
 
+    public virtual DbSet<AmountDetail> AmountDetails { get; set; }
+
     public virtual DbSet<Expance> Expances { get; set; }
+
+    public virtual DbSet<FoodDetail> FoodDetails { get; set; }
 
     public virtual DbSet<Member> Members { get; set; }
 
+    public virtual DbSet<RentDetail> RentDetails { get; set; }
+
+    public virtual DbSet<QueryResult> QueryResult { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<AmountDetail>(entity =>
+        {
+            entity.Property(e => e.CreatedDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.ModifiedDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+        });
+
         modelBuilder.Entity<Expance>(entity =>
         {
             entity.ToTable("Expance");
@@ -30,6 +48,16 @@ public partial class HappyHomeContext : DbContext
                 .HasColumnType("datetime");
             entity.Property(e => e.Date).HasColumnType("datetime");
             entity.Property(e => e.Item).HasMaxLength(100);
+            entity.Property(e => e.ModifiedDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<FoodDetail>(entity =>
+        {
+            entity.Property(e => e.CreatedDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
             entity.Property(e => e.ModifiedDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
@@ -49,6 +77,19 @@ public partial class HappyHomeContext : DbContext
             entity.Property(e => e.Name).HasMaxLength(100);
         });
 
+        modelBuilder.Entity<RentDetail>(entity =>
+        {
+            entity.Property(e => e.CreatedDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.ModifiedDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+        });
+        modelBuilder.Entity<QueryResult>(entity =>
+        {
+            entity.HasNoKey();
+        });
         OnModelCreatingPartial(modelBuilder);
     }
 

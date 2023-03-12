@@ -1,0 +1,42 @@
+﻿@model RoomManagement.Models.AmountDetail
+@{
+    ViewData["Title"] = "Add/Edit Expance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h1>Expance</h1>
+        <form asp-action="AddOrEditAmountDetail" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="RoomRentAmount" class="control-label"></label>
+                <input asp-for="RoomRentAmount" type="number" class="form-control" />
+                <span asp-validation-for="RoomRentAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FootAmountAmount" class="control-label"></label>
+                <input asp-for="FootAmountAmount" type="number" class="form-control" />
+                <span asp-validation-for="FootAmountAmount" class="text-danger"></span>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-primary w-100" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <a asp-action="AmountDetail" class="btn btn-secondary  w-100">View All</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}
