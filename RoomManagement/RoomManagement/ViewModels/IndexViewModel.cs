@@ -1,4 +1,5 @@
 ﻿using RoomManagement.Models;
+using System.Globalization;
 
 namespace RoomManagement.ViewModels
 {
@@ -15,13 +16,22 @@ namespace RoomManagement.ViewModels
 		public List<RentDetail> RentDetail { get; set; }
 		public List<AmountDetail> AmountDetail { get; set; }
 
-        public IndexViewModel GetModel()
+		public int totalAmtspend { get; set; }
+		public int RemaingAmt { get; set; }
+		public int TotalFoodAmount { get; set; }
+
+		public IndexViewModel GetModel()
 		{
-			this.Expance = _context.Expances.ToList();
-            this.FoodDetail = _context.FoodDetails.ToList();
+
+			this.Expance = _context.Expances.OrderBy(x => x.Date).ToList();
+			this.totalAmtspend = _context.Expances.ToList().Sum(x => x.Price).Value;
+
+			this.TotalFoodAmount = _context.FoodDetails.ToList().Sum(x=> x.AmountRecived).Value;
+
+			this.RemaingAmt = this.TotalFoodAmount - this.totalAmtspend;
+
 			this.FoodDetail = _context.FoodDetails.ToList();
-			this.FoodDetail = _context.FoodDetails.ToList();
-            this.Member = _context.Members.ToList();
+			this.Member = _context.Members.ToList();
             return this;
 		}
     }
