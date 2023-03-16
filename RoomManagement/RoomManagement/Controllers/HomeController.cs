@@ -2,9 +2,13 @@
 using RoomManagement.Models;
 using RoomManagement.ViewModels;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RoomManagement.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -19,6 +23,12 @@ namespace RoomManagement.Controllers
         public IActionResult Index()
         {
             return View(new IndexViewModel(_context).GetModel());
+        }
+
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index","Access");
         }
 
         public IActionResult Expance()

@@ -1,0 +1,167 @@
+﻿@using RoomManagement.ViewModels
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+	Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+@model IndexDViewModel
+
+
+
+<div class="limiter">
+	<div class="container-table100">
+		<div class="wrap-table100">
+			<div class="table100 ver1 m-b-110">
+				<div class="table100-head">
+					<table>
+						<thead>
+							<tr class="row100 head">
+								<th class="cell100 column1">Name</th>
+								<th class="cell100 column2">Company</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div class="table100-body js-pscroll">
+					<table>
+						<tbody>
+							@foreach (Member item in @Model.Member)
+							{
+								<tr class="row100 body">
+									<td class="cell100 column1">@item.Name</td>
+									<td class="cell100 column2">@item.Company</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="table100 ver2 m-b-110">
+				<div class="table100-head">
+					<table>
+						<thead>
+							<tr class="row100 head">
+								<th class="cell100 column1">RoomRentAmount</th>
+								<th class="cell100 column2">FootAmountAmount</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div class="table100-body js-pscroll">
+					<table>
+						<tbody>
+							@foreach (AmountDetail item in @Model.AmountDetail)
+							{
+								<tr class="row100 body">
+									<td class="cell100 column1">@item.RoomRentAmount</td>
+									<td class="cell100 column2">@item.FootAmountAmount</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="table100 ver3 m-b-110">
+				<div class="table100-head">
+					<table>
+						<thead>
+							<tr class="row100 head">
+								<th class="cell100 column1">Name</th>
+								<th class="cell100 column2">AmountToGive</th>
+								<th class="cell100 column3">AmountRecived</th>
+								<th class="cell100 column4">RemainingTogive</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div class="table100-body js-pscroll">
+					<table>
+						<tbody>
+							@foreach (FootData item in @Model.FootData)
+							{
+								<tr class="row100 body">
+									<td class="cell100 column1">@item.Name</td>
+									<td class="cell100 column2">@item.AmountToGive</td>
+									<td class="cell100 column3">@item.AmountRecived</td>
+									<td class="cell100 column4">@item.RemainingTogive</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="table100 ver4 m-b-110">
+				<div class="table100-head">
+					<table>
+						<thead>
+							<tr class="row100 head">
+								<th class="cell100 column1">Date</th>
+								<th class="cell100 column2">Item</th>
+								<th class="cell100 column3">Price</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div class="table100-body js-pscroll">
+					<table>
+						<tbody>
+							@foreach (Expance item in @Model.Expance)
+							{
+								<tr class="row100 body">
+									<td class="cell100 column1">@item.Date</td>
+									<td class="cell100 column2">@item.Item</td>
+									<td class="cell100 column3">@item.Price</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<table class=" table table-bordered">
+				<thead>
+					<tr>
+						<th>Total Food Amt</th>
+						<th>Total Amt Spent</th>
+						<th>Remaing Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>@Model.TotalFoodAmount</td>
+						<td style="color:red">@Model.totalAmtspend</td>
+						<td style="color:green">@Model.RemaingAmt</td>
+					</tr>
+				</tbody>
+			</table>
+			@*<div class="table100 ver5 m-b-110">
+			<div class="table100-head">
+			<table>
+			<thead>
+			<tr class="row100 head">
+			<th class="cell100 column1">Class name</th>
+			<th class="cell100 column2">Type</th>
+			<th class="cell100 column3">Hours</th>
+			<th class="cell100 column4">Trainer</th>
+			<th class="cell100 column5">Spots</th>
+			</tr>
+			</thead>
+			</table>
+			</div>
+			<div class="table100-body js-pscroll">
+			<table>
+			<tbody>
+			<tr class="row100 body">
+			<td class="cell100 column1">Like a butterfly</td>
+			<td class="cell100 column2">Boxing</td>
+			<td class="cell100 column3">9:00 AM - 11:00 AM</td>
+			<td class="cell100 column4">Aaron Chapman</td>
+			<td class="cell100 column5">10</td>
+			</tr>
+			</tbody>
+			</table>
+			</div>
+			</div>*@
+		</div>
+	</div>
+</div>
