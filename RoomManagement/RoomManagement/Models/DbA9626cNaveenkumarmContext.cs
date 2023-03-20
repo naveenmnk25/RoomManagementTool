@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RoomManagement.Models;
 
-public partial class HappyHomeContext : DbContext
+public partial class DbA9626cNaveenkumarmContext : DbContext
 {
-    public HappyHomeContext()
+    public DbA9626cNaveenkumarmContext()
     {
     }
 
-    public HappyHomeContext(DbContextOptions<HappyHomeContext> options)
+    public DbA9626cNaveenkumarmContext(DbContextOptions<DbA9626cNaveenkumarmContext> options)
         : base(options)
     {
     }

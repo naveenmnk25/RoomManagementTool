@@ -9,6 +9,7 @@ Create Table DBO.[AmountDetails]
 	 Id					Int  Identity(1, 1)	Not Null
 	,RoomRentAmount		Int
 	,FootAmountAmount	Int
+	,DetectedAmt		Int
 	,CreatedBy			Int
 	,CreatedDate		DateTime
 	,ModifiedDate		DateTime
