@@ -1,10 +1,4 @@
-If(Object_Id('GetFootetails') Is Not Null)
-Begin
-	Drop Procedure GetFootetails
-End
-GO
-
-Create Procedure GetFootetails
+Alter Procedure GetFootetails
 
 As
 Begin
@@ -21,6 +15,7 @@ Begin
 		Left Join FoodDetails(Nolock) fd
 			On m.Id = fd.MemberId
 		, AmountDetails(Nolock) Ad
+	     where m.isFood = 1
 			
 		For Json Path
 	) As JsonResult
