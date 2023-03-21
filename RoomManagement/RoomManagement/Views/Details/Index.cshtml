@@ -11,7 +11,7 @@
 
 <div class="limiter">
 	<div class="container-table100">
-		<div class="wrap-table100">
+		<div class="">
 			<div class="table100 ver1 m-b-110">
 				<div class="table100-head">
 					<table>
@@ -19,6 +19,7 @@
 							<tr class="row100 head">
 								<th class="cell100 column1">Name</th>
 								<th class="cell100 column2">Company</th>
+								<th class="cell100 column3">Sta/vec</th>
 							</tr>
 						</thead>
 					</table>
@@ -31,6 +32,17 @@
 								<tr class="row100 body">
 									<td class="cell100 column1">@item.Name</td>
 									<td class="cell100 column2">@item.Company</td>
+									<td class="cell100 column3">
+										@if (@item.IsVecate == false)
+										{
+											<span class="badge badge-pill badge-success"><i class="bi bi-check-lg"></i></span>
+										}
+										else
+										{
+											<span class="badge badge-pill badge-danger"><i class="bi bi-house-x"></i></span>
+										}
+
+										</td>
 								</tr>
 							}
 						</tbody>
