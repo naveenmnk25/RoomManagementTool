@@ -33,6 +33,9 @@
                     <th>
                         FootAmountAmount
                     </th>
+                    <th>
+                        Detected Amount
+                    </th>
                 </tr>
 
             </thead>
@@ -45,6 +48,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.FootAmountAmount)
+                        </td>
+                          <td>
+                            @Html.DisplayFor(modelItem => item.DetectedAmt)
                         </td>
                         <td>
                             <form asp-action="DeleteAmountDetail" asp-route-id="@item.Id">

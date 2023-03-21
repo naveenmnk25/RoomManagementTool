@@ -1,43 +1,52 @@
 ﻿@model RoomManagement.Models.Member
 
 @{
-    ViewData["Title"] = "Edit Member";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Edit Member";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
-    <div class="col-md-6 offset-md-3">
-        <h1>Member</h1>
-        <form asp-action="AddOrEdit" autocomplete="off">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Company" class="control-label"></label>
-                <input asp-for="Company" class="form-control" />
-                <span asp-validation-for="Company" class="text-danger"></span>
-            </div>
-            <div class="row mt-2">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="submit" value="Submit" class="btn btn-primary w-100" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <a asp-action="Index" class="btn btn-secondary  w-100">View All</a>
-                </div>
-            </div>
-        </form>
-    </div>
+	<div class="col-md-6 offset-md-3">
+		<form asp-action="AddOrEdit" method="post">
+			<input type="hidden" name="Id" value="@Model.Id" />
+			<div class="mb-3">
+				<label for="Name" class="form-label">Name</label>
+				<input type="text" class="form-control" id="Name" name="Name" aria-describedby="emailHelp" value="@Model.Name">
+			</div>
+			<div class="mb-3">
+				<label for="Company" class="form-label">Company</label>
+				<input type="text" class="form-control" id="Company" name="Company" value="@Model.Company">
+			</div>
+			<div class="mb-3">
+				<label for="JoinDate" class="form-label">JoinDate</label>
+				<input type="date" class="form-control" id="JoinDate" name="JoinDate">
+			</div>
+			<div class="mb-3">
+				<label for="VecateDate" class="form-label">VecateDate</label>
+				<input type="date" class="form-control" id="VecateDate" name="VecateDate">
+			</div>
+			<div class="mb-3 form-check">
+				<input id="Remember" type="checkbox" value="true" name="IsFood" checked="@Model.IsFood" />
+				<input type="hidden" value="false" name="IsFood" />
+				<label class="form-check-label" for="IsFood">IsFood</label>
+			</div>
+			<div class="mb-3 form-check">
+				<input id="Remember" type="checkbox" value="true" name="IsVecate" checked="@Model.IsVecate" />
+				<input type="hidden" value="false" name="IsVecate" />
+				@*<input type="checkbox" name="IsVecate" class="form-check-input" id="IsVecate" value="@Model.IsVecate" checked="@Model.IsVecate">*@
+				<label class="form-check-label" for="exampleCheck1">IsVecate</label>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+			<div class="mb-3">
+				<a asp-action="Index" class="btn btn-secondary  w-100">View All</a>
+			</div>
+		</form>
+	</div>
 </div>
-
-
 @section Scripts {
-    @{
-    await Html.RenderPartialAsync("_ValidationScriptsPartial");
-}
-}
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+	}
+
+

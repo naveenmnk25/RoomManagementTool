@@ -27,6 +27,8 @@ public partial class HappyHomeContext : DbContext
 
     public virtual DbSet<RentDetail> RentDetails { get; set; }
 
+    public virtual DbSet<QueryResult> QueryResult { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<AdvanceCal>(entity =>
@@ -76,6 +78,7 @@ public partial class HappyHomeContext : DbContext
                 .HasColumnType("datetime");
         });
 
+
         modelBuilder.Entity<Member>(entity =>
         {
             entity.ToTable("Member");
@@ -84,11 +87,16 @@ public partial class HappyHomeContext : DbContext
             entity.Property(e => e.CreatedDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
+            entity.Property(e => e.IsFood).HasColumnName("isFood");
+            entity.Property(e => e.IsVecate).HasColumnName("isVecate");
+            entity.Property(e => e.JoinDate).HasColumnType("datetime");
             entity.Property(e => e.ModifiedDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.Name).HasMaxLength(100);
+            entity.Property(e => e.VecateDate).HasColumnType("datetime");
         });
+
 
         modelBuilder.Entity<RentDetail>(entity =>
         {

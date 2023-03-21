@@ -1,4 +1,4 @@
-Create Procedure GetAdvance
+Alter Procedure GetAdvance
 
 As
 Begin
@@ -11,7 +11,7 @@ Begin
 			,AmountGiven = Ac.AmountGiven
 			,AmountReFund = Ac.AmountReFund
 			,RemAmtFromAd = Ac.RemAmtFromAd
-			,DetectedAmt  = Ad.DetectedAmt
+			,DetectedAmt  = Ac.DetectedAmt
 		From Member(Nolock) m
 		Left Join AdvanceCal(Nolock) Ac
 			On m.Id = Ac.MemberId

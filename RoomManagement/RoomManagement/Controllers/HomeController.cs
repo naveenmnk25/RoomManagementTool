@@ -41,6 +41,11 @@ namespace RoomManagement.Controllers
             return View(new FoodDetailsViewModel(_context).GetModel());
         }
 
+        public IActionResult Advance()
+        {
+            return View(new AdvanceViewModel(_context).GetModel());
+        }
+
         public IActionResult AmountDetail()
         {
             return View(new AmountDetailsViewModel(_context).GetModel());
@@ -60,7 +65,7 @@ namespace RoomManagement.Controllers
         public IActionResult AddOrEdit(int id = 0)
         {
             if (id == 0)
-                return View(new Member());
+            return View(new Member());
             else
                 return View(_context.Members.Find(id));
         }
@@ -80,7 +85,7 @@ namespace RoomManagement.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEditAmountDetail([Bind("Id,RoomRentAmount,FootAmountAmount")] AmountDetail amountDetail)
+        public async Task<IActionResult> AddOrEditAmountDetail([Bind("Id,RoomRentAmount,FootAmountAmount,DetectedAmt")] AmountDetail amountDetail)
         {
             if (ModelState.IsValid)
             {
@@ -134,6 +139,46 @@ namespace RoomManagement.Controllers
             return View(foodDetail);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="Mid"></param>
+        /// <param name="name"></param>
+        /// <param name="amountToGive"></param>
+        /// <returns></returns>
+        public IActionResult AddOrEditFoodAdvance(int Id = 0, int Mid = 0, string name = "")
+        {
+            ViewData["name"] = name;
+            if (Id == 0)
+                return View(new AdvanceCal() { MemberId = Mid });
+            else
+                return View(_context.AdvanceCals.Find(Id));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="advanceCal"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddOrEditFoodAdvance([Bind("Id,MemberId,AmountGiven,AmountReFund,RemAmtFromAd,DetectedAmt")] AdvanceCal advanceCal)
+        {
+            if (ModelState.IsValid)
+            {
+                if (advanceCal.Id == 0)
+                {
+                    _context.Add(advanceCal);
+                }
+                else
+                    _context.Update(advanceCal);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Advance));
+            }
+            return View(advanceCal);
+        }
+
 
         /// <summary>
         /// 
@@ -142,16 +187,16 @@ namespace RoomManagement.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit([Bind("Id,Name,Company")] Member member)
+        public async Task<IActionResult> AddOrEdit( Member member)
         {
-            if (ModelState.IsValid)
+            if (member.Id == 0)
             {
-                if (member.Id == 0)
-                {
-                    _context.Add(member);
-                }
-                else
-                    _context.Update(member);
+
+                _context.Add(member);
+            }
+            else
+            {
+                _context.Update(member);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

@@ -84,10 +84,14 @@ public partial class DbA9626cNaveenkumarmContext : DbContext
             entity.Property(e => e.CreatedDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
+            entity.Property(e => e.IsFood).HasColumnName("isFood");
+            entity.Property(e => e.IsVecate).HasColumnName("isVecate");
+            entity.Property(e => e.JoinDate).HasColumnType("datetime");
             entity.Property(e => e.ModifiedDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.Name).HasMaxLength(100);
+            entity.Property(e => e.VecateDate).HasColumnType("datetime");
         });
 
         modelBuilder.Entity<RentDetail>(entity =>
@@ -99,10 +103,7 @@ public partial class DbA9626cNaveenkumarmContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
         });
-        modelBuilder.Entity<QueryResult>(entity =>
-        {
-            entity.HasNoKey();
-        });
+
         OnModelCreatingPartial(modelBuilder);
     }
 

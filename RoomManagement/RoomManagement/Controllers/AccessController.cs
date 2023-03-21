@@ -10,18 +10,18 @@ namespace RoomManagement.Controllers
     {
         public IActionResult Index()
         {
-            ClaimsPrincipal claimUser = HttpContext.User;
-            if (claimUser.Identities.First().Name != null)
-            {
-                if(claimUser.Claims.First().Value == "User")
-				{
-                    return RedirectToAction("Index", "Details");
-                }
-            }
-            else if (claimUser.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index","Home");
-            }
+    //        ClaimsPrincipal claimUser = HttpContext.User;
+    //        if (claimUser.Identities.First().Name != null)
+    //        {
+    //            if(claimUser.Claims.First().Value == "User")
+				//{
+    //                return RedirectToAction("Index", "Details");
+    //            }
+    //        }
+    //        else if (claimUser.Identity.IsAuthenticated)
+    //        {
+    //            return RedirectToAction("Index", "Details");
+    //        }
           
             return View();
         }
