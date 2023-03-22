@@ -191,8 +191,9 @@ namespace RoomManagement.Controllers
         {
             if (member.Id == 0)
             {
-
                 _context.Add(member);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
             else
             {

@@ -19,7 +19,9 @@ public partial class GetAdvance
     public int? AmountReFund { get; set; }
     public int? RemAmtFromAd { get; set; }
     public int? DetectedAmt { get; set; }
+    public int? DetectedAdvAmt { get; set; }
 
+    public bool? IsVecate { get; set; }
     public int? CreatedBy { get; set; }
 
     public DateTime? CreatedDate { get; set; }

@@ -10,7 +10,7 @@ Begin
 			,AdvanceCalId = Ac.Id
 			,AmountGiven = Ac.AmountGiven
 			,AmountReFund = Ac.AmountReFund
-			,RemAmtFromAd = Ac.AmountGiven - Ac.AmountReFund - (Ad.DetectedAmt / 8)
+			,RemAmtFromAd = Ac.AmountGiven - Ac.AmountReFund - Ac.DetectedAmt
 			,DetectedAmt  = Ac.DetectedAmt 
 			,DetectedAdvAmt  = Ad.DetectedAmt / 8
 			,IsVecate = m.IsVecate
