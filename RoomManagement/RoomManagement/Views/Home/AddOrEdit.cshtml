@@ -19,11 +19,11 @@
 			</div>
 			<div class="mb-3">
 				<label for="JoinDate" class="form-label">JoinDate</label>
-				<input type="date" class="form-control" id="JoinDate" name="JoinDate">
+				<input type="date" class="form-control" id="JoinDate" name="JoinDate" asp-for="JoinDate" >
 			</div>
 			<div class="mb-3">
 				<label for="VecateDate" class="form-label">VecateDate</label>
-				<input type="date" class="form-control" id="VecateDate" name="VecateDate">
+				<input type="date" class="form-control" id="VecateDate" name="VecateDate" asp-for="VecateDate" >
 			</div>
 			<div class="mb-3 form-check">
 				<input id="Remember" type="checkbox" value="true" name="IsFood" checked="@Model.IsFood" />
