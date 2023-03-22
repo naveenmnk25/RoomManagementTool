@@ -1,4 +1,4 @@
-Alter Procedure GetAdvance
+ALTER Procedure [dbo].[GetAdvance]
 
 As
 Begin
@@ -10,8 +10,10 @@ Begin
 			,AdvanceCalId = Ac.Id
 			,AmountGiven = Ac.AmountGiven
 			,AmountReFund = Ac.AmountReFund
-			,RemAmtFromAd = Ac.RemAmtFromAd
-			,DetectedAmt  = Ac.DetectedAmt
+			,RemAmtFromAd = Ac.AmountGiven - Ac.AmountReFund - (Ad.DetectedAmt / 8)
+			,DetectedAmt  = Ac.DetectedAmt 
+			,DetectedAdvAmt  = Ad.DetectedAmt / 8
+			,IsVecate = m.IsVecate
 		From Member(Nolock) m
 		Left Join AdvanceCal(Nolock) Ac
 			On m.Id = Ac.MemberId
@@ -21,5 +23,4 @@ Begin
 	) As JsonResult
 
 End
-
 
