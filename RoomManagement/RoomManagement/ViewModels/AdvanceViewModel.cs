@@ -20,7 +20,7 @@ namespace RoomManagement.ViewModels
 
 		public int TotalDetected1 { get; set; }
 		public int RemTotalToGive1 { get; set; }
-		public List<AmountDetail> AmountDetail { get; set; }
+        public List<AmountDetail> AmountDetail { get; set; }
 		public AdvanceViewModel GetModel()
 		{
             var productTreeString = _context.QueryResult.FromSqlRaw("Execute dbo.GetAdvance").ToList();
@@ -34,7 +34,8 @@ namespace RoomManagement.ViewModels
 			this.AmountDetail = _context.AmountDetails.ToList();
 			this.TotalDetected1 = this.AmountDetail.First().DetectedAmt.Value;
 			this.RemTotalToGive1 = 60000 - this.TotalDetected1;
-			return this;
+
+            return this;
 		}
     }
 }

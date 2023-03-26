@@ -15,4 +15,8 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\advance\.settings\org.eclipse.core.resources.prefs" />
+  </ItemGroup>
+
 </Project>

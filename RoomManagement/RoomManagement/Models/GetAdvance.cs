@@ -20,7 +20,7 @@ public partial class GetAdvance
     public int? RemAmtFromAd { get; set; }
     public int? DetectedAmt { get; set; }
     public int? DetectedAdvAmt { get; set; }
-
+    public int? MonthStayed { get; set; }
     public bool? IsVecate { get; set; }
     public int? CreatedBy { get; set; }
 

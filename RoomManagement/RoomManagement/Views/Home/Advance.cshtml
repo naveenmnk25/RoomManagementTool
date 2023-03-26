@@ -1,207 +1,228 @@
 ﻿@using RoomManagement.ViewModels;
 @{
-	ViewData["Title"] = "Expance";
+    ViewData["Title"] = "Expance";
 }
 
 
 @model AdvanceViewModel
 <style>
-	.green {
-		color: green;
-	}
+    .green {
+        color: green;
+    }
 
-	.red {
-		color: red;
-	}
+    .red {
+        color: red;
+    }
+
+    th, td {
+        white-space: nowrap;
+    }
+
+    div.dataTables_wrapper {
+        width: 800px;
+        margin: 0 auto;
+    }
 </style>
 <div class="row">
-	<div class="col-md-8 offset-md-2">
-		<div class="row">
-			<div class="col-8">
-				<h1>Room Management Expance</h1>
-			</div>
-			<div class="col-4">
-				@* <a onclick="ajaxcall()" class="btn btn-sm btn-success">
-				<i class="fa-solid fa-plus"></i> New
-				</a>*@
-			</div>
-		</div>
-		<div class="table-responsive">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>
-							Name
-						</th>
-						<th>
-							AmountGiven
-						</th>
-						<th>
-							AmountReFund
-						</th>
-						<th>
-							RemAmtFromAd
-						</th>
-						<th>
-							DetectedAmt
-						</th>
-						<th>
-							DetectedAdvAmt
-						</th>
-						<th>
-							Action
-						</th>
-					</tr>
+    <div class="col-md-8 offset-md-2">
+        <div class="row">
+            <div class="col-8">
+                <h1>Room Management Expance</h1>
+            </div>
+            <div class="col-4">
+                @* <a onclick="ajaxcall()" class="btn btn-sm btn-success">
+                <i class="fa-solid fa-plus"></i> New
+                </a>*@
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table id="example" class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            AmountGiven
+                        </th>
+                        <th>
+                            AmountReFund
+                        </th>
+                        <th>
+                            RemAmtFromAd
+                        </th>
+                        <th>
+                            DetectedAmt
+                        </th>
+                        <th>
+                            DetectedAdvAmt
+                        </th>
+                        <th>
+                            MonthStayed
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
 
-				</thead>
-				<tbody>
-					@foreach (GetAdvance member in @Model.Staying)
-					{
-						<tr>
-							<td>
-								@Html.DisplayFor(modelItem => member.Name)
-								<input type="hidden" value="@member.Memberid" id="getmemberId" />
-								<input type="hidden" value="@member.AdvanceCalId" id="advanceCalId" />
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => @member.AmountGiven)
-							</td>
-							<td class="green">
-								@Html.DisplayFor(modelItem => @member.AmountReFund)
-							</td>
-							<td class="green">
-								@Html.DisplayFor(modelItem => @member.RemAmtFromAd)
-							</td>
-							<td class="red">
-								@Html.DisplayFor(modelItem => @member.DetectedAmt)
-							</td>
-							<td class="red">
-								@Html.DisplayFor(modelItem => @member.DetectedAdvAmt)
-							</td>
-							<td>
-								<form asp-action="DeleteAdvance" asp-route-id="@member.AdvanceCalId">
-									<div class="btn-group btn-group-md">
-										<a asp-action="AddOrEditFoodAdvance" asp-route-id="@member.AdvanceCalId" asp-route-mid="@member.Memberid" asp-route-name="@member.Name" class="btn btn-warning">
-											<i class="fa-solid fa-pen-to-square"></i>
-										</a>
-										@* <button type="submit" class="btn btn-danger"
-									onclick="return confirm('Are you sure to delete this record?')">
-									<i class="far fa-trash-alt"></i>
-									</button>*@
-									</div>
-								</form>
-							</td>
-						</tr>
-					}
-				</tbody>
-			</table>
-		</div>
-		<h3>Vacate People</h3>
-		<div class="table-responsive">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>
-							Name
-						</th>
-						<th>
-							AmountGiven
-						</th>
-						<th>
-							AmountReFund
-						</th>
-						<th>
-							RemAmtFromAd
-						</th>
-						<th>
-							DetectedAmt
-						</th>
-						<th>
-							DetectedAdvAmt
-						</th>
-						<th>
-							Action
-						</th>
-					</tr>
+                </thead>
+                <tbody>
+                    @foreach (GetAdvance member in @Model.Staying)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => member.Name)
+                                <input type="hidden" value="@member.Memberid" id="getmemberId" />
+                                <input type="hidden" value="@member.AdvanceCalId" id="advanceCalId" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => @member.AmountGiven)
+                            </td>
+                            <td class="green">
+                                @Html.DisplayFor(modelItem => @member.AmountReFund)
+                            </td>
+                            <td class="green">
+                                @Html.DisplayFor(modelItem => @member.RemAmtFromAd)
+                            </td>
+                            <td class="red">
+                                @Html.DisplayFor(modelItem => @member.DetectedAmt)
+                            </td>
+                            <td class="red">
+                                @Html.DisplayFor(modelItem => @member.DetectedAdvAmt)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => @member.MonthStayed)
+                            </td>
+                            <td>
+                                <form asp-action="DeleteAdvance" asp-route-id="@member.AdvanceCalId">
+                                    <div class="btn-group btn-group-md">
+                                        <a asp-action="AddOrEditFoodAdvance" asp-route-id="@member.AdvanceCalId" asp-route-mid="@member.Memberid" asp-route-name="@member.Name" class="btn btn-warning">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        @* <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure to delete this record?')">
+                                    <i class="far fa-trash-alt"></i>
+                                    </button>*@
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <h3>Vacate People</h3>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            AmountGiven
+                        </th>
+                        <th>
+                            AmountReFund
+                        </th>
+                        <th>
+                            RemAmtFromAd
+                        </th>
+                        <th>
+                            DetectedAmt
+                        </th>
+                        <th>
+                            DetectedAdvAmt
+                        </th>
+                        <th>
+                            MonthStayed
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
 
-				</thead>
-				<tbody>
-					@foreach (GetAdvance member in @Model.vecate)
-					{
-						<tr>
-							<td>
-								@Html.DisplayFor(modelItem => member.Name)
-								<input type="hidden" value="@member.Memberid" id="getmemberId" />
-								<input type="hidden" value="@member.AdvanceCalId" id="advanceCalId" />
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => @member.AmountGiven)
-							</td>
-							<td class="green">
-								@Html.DisplayFor(modelItem => @member.AmountReFund)
-							</td>
-							<td class="green">
-								@Html.DisplayFor(modelItem => @member.RemAmtFromAd)
-							</td>
-							<td class="red">
-								@Html.DisplayFor(modelItem => @member.DetectedAmt)
-							</td>
-							<td class="red">
-								@Html.DisplayFor(modelItem => @member.DetectedAdvAmt)
-							</td>
-							<td>
-								<form asp-action="DeleteAdvance" asp-route-id="@member.AdvanceCalId">
-									<div class="btn-group btn-group-md">
-										<a asp-action="AddOrEditFoodAdvance" asp-route-id="@member.AdvanceCalId" asp-route-mid="@member.Memberid" asp-route-name="@member.Name" class="btn btn-warning">
-											<i class="fa-solid fa-pen-to-square"></i>
-										</a>
-										@* <button type="submit" class="btn btn-danger"
-									onclick="return confirm('Are you sure to delete this record?')">
-									<i class="far fa-trash-alt"></i>
-									</button>*@
-									</div>
-								</form>
-							</td>
-						</tr>
-					}
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class="col-md-4 offset-md-2">
-		<table class=" table table-bordered">
-			<thead>
-				<tr>
-					<th> Approx TotalDetected</th>
-					<th>Approx RemTotalToGive</th>
-					<th>Approx TotalReFund</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td style="color:red">@Model.TotalDetected</td>
-					<td >@Model.RemTotalToGive</td>
-					<td style="color:green">@Model.TotalReFund</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+                </thead>
+                <tbody>
+                    @foreach (GetAdvance member in @Model.vecate)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => member.Name)
+                                <input type="hidden" value="@member.Memberid" id="getmemberId" />
+                                <input type="hidden" value="@member.AdvanceCalId" id="advanceCalId" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => @member.AmountGiven)
+                            </td>
+                            <td class="green">
+                                @Html.DisplayFor(modelItem => @member.AmountReFund)
+                            </td>
+                            <td class="green">
+                                @Html.DisplayFor(modelItem => @member.RemAmtFromAd)
+                            </td>
+                            <td class="red">
+                                @Html.DisplayFor(modelItem => @member.DetectedAmt)
+                            </td>
+                            <td class="red">
+                                @Html.DisplayFor(modelItem => @member.DetectedAdvAmt)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => @member.MonthStayed)
+                            </td>
+                            <td>
+                                <form asp-action="DeleteAdvance" asp-route-id="@member.AdvanceCalId">
+                                    <div class="btn-group btn-group-md">
+                                        <a asp-action="AddOrEditFoodAdvance" asp-route-id="@member.AdvanceCalId" asp-route-mid="@member.Memberid" asp-route-name="@member.Name" class="btn btn-warning">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        @* <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure to delete this record?')">
+                                    <i class="far fa-trash-alt"></i>
+                                    </button>*@
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4 offset-md-2">
+        <table class=" table table-bordered">
+            <thead>
+                <tr>
+                    <th> Approx TotalDetected</th>
+                    <th>Approx RemTotalToGive</th>
+                    <th>Approx TotalReFund</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="color:red">@Model.TotalDetected</td>
+                    <td>@Model.RemTotalToGive</td>
+                    <td style="color:green">@Model.TotalReFund</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-4 offset-md-2">
-		<table class=" table table-bordered">
-			<thead>
-				<tr>
-					<th>TotalDetected</th>
-					<th>RemTotalToGive</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td style="color:red">@Model.TotalDetected1</td>
-					<td >@Model.RemTotalToGive1</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+    <div class="col-md-4 offset-md-2">
+        <table class=" table table-bordered">
+            <thead>
+                <tr>
+                    <th>TotalDetected</th>
+                    <th>RemTotalToGive</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="color:red">@Model.TotalDetected1</td>
+                    <td>@Model.RemTotalToGive1</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
