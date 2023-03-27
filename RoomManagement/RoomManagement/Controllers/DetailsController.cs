@@ -8,7 +8,7 @@ using RoomManagement.ViewModels;
 namespace RoomManagement.Controllers
 {
 
-    [Authorize(Roles = "User")]
+    
     public class DetailsController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -19,10 +19,15 @@ namespace RoomManagement.Controllers
             _logger = logger;
             _context = context;
         }
-
-        public IActionResult Index()
+		[Authorize(Roles = "User")]
+		public IActionResult Index()
         {
             return View(new IndexDViewModel(_context).GetModel());
+        }
+		[Authorize(Roles = "adv")]
+		public IActionResult Advance()
+        {
+            return View(new AdvanceViewModel(_context).GetModel());
         }
 
         public async Task<IActionResult> LogOut()

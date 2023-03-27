@@ -24,6 +24,8 @@ public partial class GetAdvance
     public bool? IsVecate { get; set; }
     public int? CreatedBy { get; set; }
 
+    public DateTime? JoinDate { get; set; }
+    public DateTime? VecateDate { get; set; }
     public DateTime? CreatedDate { get; set; }
 
     public DateTime? ModifiedDate { get; set; }

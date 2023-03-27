@@ -29,7 +29,7 @@ namespace RoomManagement.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(Login modelLogin)
         {
-            if (modelLogin.Email =="Admin" && modelLogin.PassWord == "123@")
+            if (modelLogin.Email.ToLower() == "admin" && modelLogin.PassWord == "123@")
             {
                 List<Claim> Claims = new List<Claim>()
                 {
@@ -49,7 +49,7 @@ namespace RoomManagement.Controllers
                     new ClaimsPrincipal(claimsIdentity), properties);
                 return RedirectToAction("Index", "Home");
             }
-            if (modelLogin.Email == "User" && modelLogin.PassWord == "User@")
+            if (modelLogin.Email.ToLower() == "user" && modelLogin.PassWord.ToLower() == "user@")
             {
                 List<Claim> Claims = new List<Claim>()
                 {
@@ -69,8 +69,27 @@ namespace RoomManagement.Controllers
                     new ClaimsPrincipal(claimsIdentity), properties);
                 return RedirectToAction("Index", "Details");
             }
+			if (modelLogin.Email.ToLower() == "adv" && modelLogin.PassWord.ToLower() == "adv")
+			{
+				List<Claim> Claims = new List<Claim>()
+				{
+					new Claim(ClaimTypes.NameIdentifier,modelLogin.Email),
+					new Claim(ClaimTypes.Role,"adv"),
+				};
+				ClaimsIdentity claimsIdentity = new ClaimsIdentity(Claims,
+					CookieAuthenticationDefaults.AuthenticationScheme);
 
-            ViewData["ValiDateMessage"] = "User not Found";
+				AuthenticationProperties properties = new AuthenticationProperties()
+				{
+					AllowRefresh = true,
+					IsPersistent = modelLogin.KeepLoggedIn
+				};
+
+				await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+					new ClaimsPrincipal(claimsIdentity), properties);
+				return RedirectToAction("Advance", "Details");
+			}
+			ViewData["ValiDateMessage"] = "User not Found";
             return View();
         }
     }

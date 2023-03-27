@@ -1,0 +1,185 @@
+﻿@using RoomManagement.ViewModels;
+@{
+    ViewData["Title"] = "Expance";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+}
+
+
+@model AdvanceViewModel
+<link rel="stylesheet" type="text/css" href="~/assets/css/Adv.css">
+
+<div class="table-container">
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                AmountGiven
+            </th>
+            <th>
+                AmountReFund
+            </th>
+            <th>
+                RemAmtFromAd
+            </th>
+            <th>
+                DetectedAmt
+            </th>
+            <th>
+                DetectedAdvAmt
+            </th>
+            <th>
+                Joining Date
+            </th>
+            <th>
+                Vecated Date
+            </th>
+            <th>
+                MonthStayed
+            </th>
+        </tr>
+        @foreach (GetAdvance member in @Model.Staying)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => member.Name)
+                    <input type="hidden" value="@member.Memberid" id="getmemberId" />
+                    <input type="hidden" value="@member.AdvanceCalId" id="advanceCalId" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => @member.AmountGiven)
+                </td>
+                <td class="green">
+                    @Html.DisplayFor(modelItem => @member.AmountReFund)
+                </td>
+                <td class="green">
+                    @Html.DisplayFor(modelItem => @member.RemAmtFromAd)
+                </td>
+                <td class="red">
+                    @Html.DisplayFor(modelItem => @member.DetectedAmt)
+                </td>
+                <td class="red">
+                    @Html.DisplayFor(modelItem => @member.DetectedAdvAmt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => @member.JoinDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => @member.VecateDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => @member.MonthStayed)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+<div class="table-container">
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                AmountGiven
+            </th>
+            <th>
+                AmountReFund
+            </th>
+            <th>
+                RemAmtFromAd
+            </th>
+            <th>
+                DetectedAmt
+            </th>
+            <th>
+                DetectedAdvAmt
+            </th>
+            <th>
+                Joining Date
+            </th>
+            <th>
+                Vecated Date
+            </th>
+            <th>
+                MonthStayed
+            </th>
+        </tr>
+        @foreach (GetAdvance member in @Model.vecate)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => member.Name)
+                    <input type="hidden" value="@member.Memberid" id="getmemberId" />
+                    <input type="hidden" value="@member.AdvanceCalId" id="advanceCalId" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => @member.AmountGiven)
+                </td>
+                <td class="green">
+                    @Html.DisplayFor(modelItem => @member.AmountReFund)
+                </td>
+                <td class="green">
+                    @Html.DisplayFor(modelItem => @member.RemAmtFromAd)
+                </td>
+                <td class="red">
+                    @Html.DisplayFor(modelItem => @member.DetectedAmt)
+                </td>
+                <td class="red">
+                    @Html.DisplayFor(modelItem => @member.DetectedAdvAmt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => @member.JoinDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => @member.VecateDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => @member.MonthStayed)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<div class="col-md-4 offset-md-2">
+    <table class=" table table-bordered">
+        <thead>
+            <tr>
+                <th> Approx TotalDetected</th>
+                <th>Approx RemTotalToGive</th>
+                <th>Approx TotalReFund</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="color:red">@Model.TotalDetected</td>
+                <td>@Model.RemTotalToGive</td>
+                <td style="color:green">@Model.TotalReFund</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+    <div class="col-md-4 offset-md-2">
+        <table class=" table table-bordered">
+            <thead>
+                <tr>
+                    <th>TotalDetected</th>
+                    <th>RemTotalToGive</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="color:red">@Model.TotalDetected1</td>
+                    <td>@Model.RemTotalToGive1</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
