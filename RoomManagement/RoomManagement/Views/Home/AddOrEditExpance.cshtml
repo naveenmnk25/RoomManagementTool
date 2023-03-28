@@ -1,48 +1,61 @@
-﻿@model RoomManagement.Models.Expance
+﻿@using RoomManagement.ViewModels
+@*@model RoomManagement.Models.Expance*@
+
+@model AdvViewModel
 
 @{
-    ViewData["Title"] = "Add/Edit Expance";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Add/Edit Expance";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
-    <div class="col-md-6 offset-md-3">
-        <h1>Expance</h1>
-        <form asp-action="AddOrEditExpance" autocomplete="off">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" type="date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Item" class="control-label"></label>
-                <input asp-for="Item" class="form-control" />
-                <span asp-validation-for="Item" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" type="number"class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="row mt-2">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="submit" value="Submit" class="btn btn-primary w-100" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <a asp-action="Expance" class="btn btn-secondary  w-100">View All</a>
-                </div>
-            </div>
-        </form>
-    </div>
+	<div class="col-md-6 offset-md-3">
+		<h1>Expance</h1>
+		<form asp-action="AddOrEditExpance" autocomplete="off">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input type="hidden" asp-for="Expances.Id" />
+			<div class="form-group">
+				@Html.DropDownList(
+				"MemberId",
+				new SelectList(
+				Model.Member.Select(x => new { Value = x.Id, Text = x.Name }),
+				"Value",
+				"Text"
+				)
+				)
+			</div>
+			<div class="form-group">
+				<label asp-for="Expances.Date" class="control-label"></label>
+				<input asp-for="Expances.Date" type="date" class="form-control" />
+				<span asp-validation-for="Expances.Date" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Expances.Item" class="control-label"></label>
+				<input asp-for="Expances.Item" class="form-control" />
+				<span asp-validation-for="Expances.Item" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Expances.Price" class="control-label"></label>
+				<input asp-for="Expances.Price" type="number" class="form-control" />
+				<span asp-validation-for="Expances.Price" class="text-danger"></span>
+			</div>
+			<div class="row mt-2">
+				<div class="col-md-6">
+					<div class="form-group">
+						<input type="submit" value="Submit" class="btn btn-primary w-100" />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<a asp-action="Expance" class="btn btn-secondary  w-100">View All</a>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
 
 
 @section Scripts {
-    @{
-    await Html.RenderPartialAsync("_ValidationScriptsPartial");
-}
-}
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+	}

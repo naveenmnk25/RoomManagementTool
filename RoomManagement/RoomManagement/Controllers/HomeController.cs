@@ -207,9 +207,9 @@ namespace RoomManagement.Controllers
         public IActionResult AddOrEditExpance(int id = 0)
         {
             if (id == 0)
-                return View(new Expance());
+                return View(new AdvViewModel(_context).GetModel(0));
             else
-                return View(_context.Expances.Find(id));
+                return View(new AdvViewModel(_context).GetModel(id));
         }
         /// <summary>
         /// 

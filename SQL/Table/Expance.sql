@@ -8,6 +8,7 @@ Create Table DBO.[Expance]
 (
 	 Id					Int  Identity(1, 1)	Not Null
 	,[Item]				Nvarchar(100)		
+	,MemberId			Int		
 	,Price				Int
 	,[Date]				DateTime		
 	,CreatedBy			Int

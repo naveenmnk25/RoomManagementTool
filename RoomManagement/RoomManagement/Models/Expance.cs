@@ -20,4 +20,7 @@ public partial class Expance
     public DateTime? ModifiedDate { get; set; }
 
     public int? ModifiedBy { get; set; }
+
+    public int? MemberId { get; set; }
+
 }
