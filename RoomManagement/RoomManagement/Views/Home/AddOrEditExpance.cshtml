@@ -13,30 +13,30 @@
 		<h1>Expance</h1>
 		<form asp-action="AddOrEditExpance" autocomplete="off">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<input type="hidden" asp-for="Expances.Id" />
+			<input type="hidden" asp-for="Expances.Id" name="Id"/>
 			<div class="form-group">
 				@Html.DropDownList(
 				"MemberId",
 				new SelectList(
-				Model.Member.Select(x => new { Value = x.Id, Text = x.Name }),
+				Model.Member.Where(x=>x.IsFood == true).Select(x => new { Value = x.Id, Text = x.Name }),
 				"Value",
 				"Text"
-				)
+				),new { @Class="form-control"}
 				)
 			</div>
 			<div class="form-group">
 				<label asp-for="Expances.Date" class="control-label"></label>
-				<input asp-for="Expances.Date" type="date" class="form-control" />
+				<input asp-for="Expances.Date" name="Date" type="date" class="form-control" />
 				<span asp-validation-for="Expances.Date" class="text-danger"></span>
 			</div>
 			<div class="form-group">
 				<label asp-for="Expances.Item" class="control-label"></label>
-				<input asp-for="Expances.Item" class="form-control" />
+				<input asp-for="Expances.Item" name="Item" class="form-control" />
 				<span asp-validation-for="Expances.Item" class="text-danger"></span>
 			</div>
 			<div class="form-group">
 				<label asp-for="Expances.Price" class="control-label"></label>
-				<input asp-for="Expances.Price" type="number" class="form-control" />
+				<input asp-for="Expances.Price" name="Price" type="number" class="form-control" />
 				<span asp-validation-for="Expances.Price" class="text-danger"></span>
 			</div>
 			<div class="row mt-2">

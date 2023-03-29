@@ -28,6 +28,7 @@ public partial class HappyHomeContext : DbContext
     public virtual DbSet<RentDetail> RentDetails { get; set; }
 
     public virtual DbSet<QueryResult> QueryResult { get; set; }
+    public virtual DbSet<ExecuteResult> ExecuteResult { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -108,6 +109,10 @@ public partial class HappyHomeContext : DbContext
                 .HasColumnType("datetime");
         });
         modelBuilder.Entity<QueryResult>(entity =>
+        {
+            entity.HasNoKey();
+        });
+        modelBuilder.Entity<ExecuteResult>(entity =>
         {
             entity.HasNoKey();
         });

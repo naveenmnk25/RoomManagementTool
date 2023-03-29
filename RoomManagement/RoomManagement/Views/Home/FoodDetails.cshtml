@@ -43,6 +43,9 @@
                             Remaining Togive
                         </th>
                         <th>
+                            ExceptAmt Spent
+                        </th>
+                        <th>
                             Action
                         </th>
                     </tr>
@@ -65,6 +68,9 @@
                             </td>
                             <td class="red">
                                 @Html.DisplayFor(modelItem => @member.RemainingTogive )
+                            </td>
+                            <td class="red">
+                                @Html.DisplayFor(modelItem => @member.ExceptAmt )
                             </td>
                             <td>
                                 <form asp-action="DeleteExpance" asp-route-id="@member.FoodDetailsid">

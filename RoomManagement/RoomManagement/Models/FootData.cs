@@ -18,6 +18,8 @@ public partial class FootData
     public int? AmountToGive { get; set; }
     public int? AmountRecived { get; set; }
     public int? RemainingTogive { get; set; }
+    public int? ExceptAmt { get; set; }
+    
 
     public int? CreatedBy { get; set; }
 

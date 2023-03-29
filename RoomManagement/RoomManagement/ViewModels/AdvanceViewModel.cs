@@ -16,7 +16,8 @@ namespace RoomManagement.ViewModels
 
         public int TotalDetected { get; set; }
         public int RemTotalToGive { get; set; }
-        public int TotalReFund { get; set; }
+        public int tovec { get; set; }
+		public int TotalReFund { get; set; }
 
 		public int TotalDetected1 { get; set; }
 		public int RemTotalToGive1 { get; set; }
@@ -34,8 +35,9 @@ namespace RoomManagement.ViewModels
 			this.AmountDetail = _context.AmountDetails.ToList();
 			this.TotalDetected1 = this.AmountDetail.First().DetectedAmt.Value;
 			this.RemTotalToGive1 = 60000 - this.TotalDetected1;
+			this.tovec = this.vecate.Where(x => x.Memberid != 10).Sum(x => x.RemAmtFromAd).Value;
 
-            return this;
+			return this;
 		}
     }
 }

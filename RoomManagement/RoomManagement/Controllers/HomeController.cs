@@ -5,6 +5,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace RoomManagement.Controllers
 {
@@ -218,7 +219,7 @@ namespace RoomManagement.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEditExpance([Bind("Id,Item,Price,Date")] Expance expance)
+        public async Task<IActionResult> AddOrEditExpance( Expance expance) //[Bind("Id,Item,Price,Date")]
         {
             if (ModelState.IsValid)
             {
@@ -237,7 +238,19 @@ namespace RoomManagement.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="expance"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetAmt() 
+        {
+            var productTreeString = _context.ExecuteResult.FromSqlRaw("Execute dbo.ResetAmt");
+            return RedirectToAction(nameof(Expance));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>   
         /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
