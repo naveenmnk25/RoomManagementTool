@@ -9,6 +9,7 @@ Create Table DBO.[Expance]
 	 Id					Int  Identity(1, 1)	Not Null
 	,[Item]				Nvarchar(100)		
 	,MemberId			Int		
+	,SectionId			Int		
 	,Price				Int
 	,[Date]				DateTime		
 	,CreatedBy			Int
@@ -30,3 +31,6 @@ Alter Table dbo.Expance
 Add Constraint DF_Expance_ModifiedDate
 Default GetDate() FOR ModifiedDate
 Go
+
+
+

@@ -8,6 +8,7 @@ Create Table DBO.[FoodDetails]
 (
 	 Id					Int  Identity(1, 1)	Not Null
 	,[MemberId]			Int		
+	,SectionId			Int		
 	,AmountToGive		Int
 	,AmountRecived		Int
 	,CreatedBy			Int
