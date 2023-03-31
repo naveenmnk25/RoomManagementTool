@@ -21,10 +21,8 @@
                 <h1>Room Management Expance</h1>
             </div>
             <div class="col-4">
-                @* <a onclick="ajaxcall()" class="btn btn-sm btn-success">
-                <i class="fa-solid fa-plus"></i> New
-                </a>*@
-            </div>
+                <select id="sectionId"   name="sectionId" class ="form-control" asp-items="ViewBag.sectionlist" onchange="getFooddetails()"></select>
+        </div>
         </div>
         <div class="table-responsive">
             <table class="table">
@@ -107,5 +105,34 @@
 
         });
     }
+    //function getFooddetails(){
+    //   var data1 = $("#sectionId").val();
+    //   var data = { "Id": Number(data1)};
+    //    console.log(typeof Number(data1));
+    //    console.log(typeof data);
+    //     $.ajax({
+    //        type: 'POST',
+    //        url: '/Home/getFooddata',
+    //         data: {Id :Number(data1)},
+    //        success: successFunc,
+    //    });
+    //}
+    function getFooddetails(){
+       var data1 = $("#sectionId").val();
+       var data = { "Id": Number(data1)};
+        console.log(typeof Number(data1));
+        console.log(typeof data);
+         $.ajax({
+            type: 'get',
+            url: '/Home/getFooddata',
+             data: {Id :Number(data1)},
+             success: function(response) {
+                 console.log(response);
+             }
+        });
+    }
+    function successFunc(){
 
+    }
 </script>
+

@@ -12,10 +12,18 @@ namespace RoomManagement.ViewModels
 		}
 		public List<FootData> FootData { get; set; }
 
-        public FoodDetailsViewModel GetModel()
+        public FoodDetailsViewModel GetModel(int? Secid)
 		{
-            var productTreeString = _context.QueryResult.FromSqlRaw("Execute dbo.GetFootetails").ToList();
-            this.FootData = Newtonsoft.Json.JsonConvert.DeserializeObject<List<FootData>>(productTreeString[0].JsonResult);
+            var productTreeString = _context.QueryResult.FromSqlRaw("Execute dbo.GetFootetails {0}", Secid)!.ToList();
+            if (productTreeString[0].JsonResult ==null )
+            {
+                this.FootData = new List<FootData>();
+            }
+            else
+            {
+                this.FootData = Newtonsoft.Json.JsonConvert.DeserializeObject<List<FootData>>(productTreeString[0].JsonResult);
+            }
+
             return this;
 		}
     }

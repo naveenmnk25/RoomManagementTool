@@ -17,7 +17,6 @@ namespace RoomManagement.ViewModels
 			if(id== 0)
             {
 				this.Expances = new Expance();
-				this.Expances.MemberId = 1;
 			}
             else
             {

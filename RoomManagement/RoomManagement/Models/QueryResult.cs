@@ -9,5 +9,5 @@ namespace RoomManagement.Models;
 [Keyless]
 public class QueryResult
 {
-    public string JsonResult { get; set; }
+    public string? JsonResult { get; set; }
 }

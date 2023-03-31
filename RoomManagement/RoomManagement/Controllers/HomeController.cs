@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace RoomManagement.Controllers
 {
@@ -37,11 +38,44 @@ namespace RoomManagement.Controllers
             return View(new IndexViewModel(_context).GetModel());
         }
 
-        public IActionResult FoodDetails()
+        private List<SelectListItem> Getsectionlist(int countryId = 1)
         {
-            return View(new FoodDetailsViewModel(_context).GetModel());
+            List<SelectListItem> MemberList = new List<SelectListItem>();
+           
+            var defItem = new SelectListItem()
+            {
+                Value = "1",
+                Text = "March"
+            };
+            var defItem1 = new SelectListItem()
+            {
+                Value = "2",
+                Text = "April"
+            };
+
+            MemberList.Insert(0, defItem);
+            MemberList.Insert(1, defItem1);
+
+            return MemberList;
         }
 
+        public IActionResult FoodDetails(int Id)
+        {
+            ViewBag.sectionlist = Getsectionlist();   
+            return View(new FoodDetailsViewModel(_context).GetModel(Id));
+        }
+
+        [HttpGet]
+        public JsonResult getFooddata(int Id)
+        {
+            ViewBag.sectionlist = Getsectionlist();
+            RedirectToAction("FoodDetails", new FoodDetailsViewModel(_context).GetModel(Id));
+            return Json(new FoodDetailsViewModel(_context).GetModel(Id));
+        }
+        public IActionResult GetRent()
+        {
+            return View(new GetRentViewModel(_context).GetModel());
+        }
         public IActionResult Advance()
         {
             return View(new AdvanceViewModel(_context).GetModel());
@@ -204,9 +238,32 @@ namespace RoomManagement.Controllers
             }
             return View(member);
         }
+
+        private List<SelectListItem> GetMemberList(int countryId = 1)
+        {
+            List<SelectListItem> MemberList = _context.Members.Where(x => x.IsFood == true).Select(n =>
+               new SelectListItem
+               {
+                   Value = n.Id.ToString(),
+                   Text = n.Name
+               }).ToList();
+            var defItem = new SelectListItem()
+            {
+                Value = "",
+                Text = "----Select Name----"
+            };
+
+            MemberList.Insert(0, defItem);
+
+            return MemberList;
+        }
+
         // GET: Transaction/AddOrEdit
         public IActionResult AddOrEditExpance(int id = 0)
         {
+           
+
+            ViewBag.MemberId = GetMemberList();
             if (id == 0)
                 return View(new AdvViewModel(_context).GetModel(0));
             else

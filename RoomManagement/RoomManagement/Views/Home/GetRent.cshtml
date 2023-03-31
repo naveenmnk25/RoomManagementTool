@@ -1,0 +1,51 @@
+﻿@using RoomManagement.ViewModels
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model GetRentViewModel
+
+<div class="table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					Name
+				</th>
+				<th>
+					AmountToGive
+				</th>
+			</tr>
+
+		</thead>
+		<tbody>
+			@foreach (GetRent member in @Model.GetRent)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => member.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => @member.AmountToGive)
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+
+<div class="col-md-3 col-3">
+	<table class=" table table-bordered">
+		<thead>
+			<tr>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>@Model.total</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
