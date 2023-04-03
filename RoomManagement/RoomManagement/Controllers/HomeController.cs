@@ -142,11 +142,11 @@ namespace RoomManagement.Controllers
         /// <param name="Id"></param>
         /// <param name="Memberid"></param>
         /// <returns></returns>
-        public IActionResult AddOrEditFoodDetails(int Id = 0, int Mid = 0, string name = "" ,int amountToGive=0)
+        public IActionResult AddOrEditFoodDetails(int Id = 0, int Mid = 0, int Sid = 0, string name = "" ,int amountToGive=0)
         {
             ViewData["name"] = name;
             if (Id == 0)
-                return View(new FoodDetail() { MemberId = Mid ,AmountToGive= amountToGive });
+                return View(new FoodDetail() { MemberId = Mid ,AmountToGive= amountToGive ,SectionId=Sid});
             else
                 return View(_context.FoodDetails.Find(Id));
         }
@@ -158,7 +158,7 @@ namespace RoomManagement.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEditFoodDetails([Bind("Id,MemberId,AmountToGive,AmountRecived")] FoodDetail foodDetail)
+        public async Task<IActionResult> AddOrEditFoodDetails([Bind("Id,MemberId,AmountToGive,AmountRecived,SectionId")] FoodDetail foodDetail)
         {
             if (ModelState.IsValid)
             {

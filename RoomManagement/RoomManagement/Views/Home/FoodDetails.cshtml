@@ -57,6 +57,7 @@
                                 @Html.DisplayFor(modelItem => member.Name)
                                 <input type="hidden" value="@member.Memberid" id="getmemberId" />
                                 <input type="hidden" value="@member.FoodDetailsid" id="getitemId" />
+                                <input type="hidden" value="@member.SectionId" id="getSectionId" />
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => @member.AmountToGive)
@@ -73,7 +74,7 @@
                             <td>
                                 <form asp-action="DeleteExpance" asp-route-id="@member.FoodDetailsid">
                                     <div class="btn-group btn-group-md">
-                                        <a asp-action="AddOrEditFoodDetails" asp-route-id="@member.FoodDetailsid" asp-route-mid="@member.Memberid" asp-route-amountToGive="@member.AmountToGive" asp-route-name="@member.Name" class="btn btn-warning">
+                                        <a asp-action="AddOrEditFoodDetails" asp-route-id="@member.FoodDetailsid" asp-route-sid="@member.SectionId" asp-route-mid="@member.Memberid" asp-route-amountToGive="@member.AmountToGive" asp-route-name="@member.Name" class="btn btn-warning">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
                                         @* <button type="submit" class="btn btn-danger"
