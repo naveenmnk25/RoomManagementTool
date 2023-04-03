@@ -26,7 +26,7 @@ namespace RoomManagement.ViewModels
 			this.Expance = _context.Expances.OrderBy(x => x.Date).ToList();
 			this.totalAmtspend = _context.Expances.ToList().Where(x=>x.MemberId == 1).Sum(x => x.Price).Value;
 
-			this.TotalFoodAmount = _context.FoodDetails.ToList().Sum(x=> x.AmountRecived).Value;
+			this.TotalFoodAmount = _context.FoodDetails.Where(x => x.SectionId == 2).ToList().Sum(x=> x.AmountRecived).Value;
 
 			this.RemaingAmt = this.TotalFoodAmount - this.totalAmtspend;
 			this.FoodDetail = _context.FoodDetails.ToList();

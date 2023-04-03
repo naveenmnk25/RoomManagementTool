@@ -14,7 +14,7 @@ namespace RoomManagement.ViewModels
 
         public FoodDetailsViewModel GetModel(int? Secid)
 		{
-            var productTreeString = _context.QueryResult.FromSqlRaw("Execute dbo.GetFootetails {0}", Secid)!.ToList();
+            var productTreeString = _context.QueryResult.FromSqlRaw("Execute dbo.GetFootetails ")!.ToList();
             if (productTreeString[0].JsonResult ==null )
             {
                 this.FootData = new List<FootData>();

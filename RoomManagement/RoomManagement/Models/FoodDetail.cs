@@ -8,7 +8,7 @@ public partial class FoodDetail
     public int Id { get; set; }
 
     public int? MemberId { get; set; }
-
+    public int? SectionId { get; set; }
     public int? AmountToGive { get; set; }
 
     public int? AmountRecived { get; set; }
