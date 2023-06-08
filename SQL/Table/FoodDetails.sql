@@ -1,16 +1,15 @@
-If(Object_Id('FoodDetails') Is Not Null)
+If(Object_Id('User') Is Not Null)
 Begin
-	Drop Table [FoodDetails]
+	Drop Table [User]
 End
 GO
 
-Create Table DBO.[FoodDetails]
+Create Table DBO.[User]
 (
-	 Id					Int  Identity(1, 1)	Not Null
-	,[MemberId]			Int		
-	,SectionId			Int		
-	,AmountToGive		Int
-	,AmountRecived		Int
+	 Id					Int  Identity(1, 1)	Not Null,
+	 [Username]			NVARCHAR(100) NOT NULL,
+    [PasswordHash]		VARBINARY(MAX) NOT NULL,
+    [PasswordSalt]		VARBINARY(MAX) NOT NULL
 	,CreatedBy			Int
 	,CreatedDate		DateTime
 	,ModifiedDate		DateTime
@@ -18,15 +17,15 @@ Create Table DBO.[FoodDetails]
 )
 GO
 
-Alter Table dbo.FoodDetails
-Add Constraint PK_FoodDetails Primary Key (Id)
+Alter Table dbo.[User]
+Add Constraint PK_User Primary Key (Id)
 
-Alter Table dbo.FoodDetails
-Add Constraint DF_FoodDetails_CreatedDate
+Alter Table dbo.[User]
+Add Constraint DF_User_CreatedDate
 Default GetDate() FOR CreatedDate
 Go
 
-Alter Table dbo.FoodDetails
-Add Constraint DF_FoodDetails_ModifiedDate
+Alter Table dbo.[User]
+Add Constraint DF_User_ModifiedDate
 Default GetDate() FOR ModifiedDate
 Go
